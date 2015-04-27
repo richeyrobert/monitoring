@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.2.2'
 gem 'rails', '4.2.1'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -42,3 +42,13 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Rob added the following Gems
+# For pinging the hosts 
+gem 'net-ping'
+# For snmp connectivity
+gem 'snmp'
+gem 'capistrano'
+gem 'capistrano-builder'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'

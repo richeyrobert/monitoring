@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421202522) do
+ActiveRecord::Schema.define(version: 20150421223200) do
+
+  create_table "devices", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "ip_address"
+    t.boolean  "device_status"
+    t.boolean  "ipv6"
+    t.integer  "snmp_template"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
