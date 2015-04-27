@@ -49,6 +49,7 @@ gem 'net-ping'
 # For snmp connectivity
 gem 'snmp'
 gem 'capistrano'
-gem 'capistrano-builder'
+gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-rbenv'
+gem 'capistrano-passenger'
