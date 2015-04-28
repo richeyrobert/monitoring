@@ -49,8 +49,8 @@ end
 gem 'net-ping'
 # For snmp connectivity
 gem 'snmp'
-gem 'capistrano'
-gem 'capistrano-bundler'
-gem 'capistrano-rails'
-gem 'capistrano-rbenv'
-gem 'capistrano-passenger'
+# gem 'capistrano'
+# gem 'capistrano-bundler'
+# gem 'capistrano-rails'
+# gem 'capistrano-rbenv'
+# gem 'capistrano-passenger'
