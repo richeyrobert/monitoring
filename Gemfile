@@ -13,6 +13,7 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'sqlite3'
 end
 gem 'bootstrap-sass'
 gem 'devise'
@@ -49,8 +50,5 @@ end
 gem 'net-ping'
 # For snmp connectivity
 gem 'snmp'
-# gem 'capistrano'
-# gem 'capistrano-bundler'
-# gem 'capistrano-rails'
-# gem 'capistrano-rbenv'
-# gem 'capistrano-passenger'
+# For RRD Graphing
+gem 'RailsRRDTool'
