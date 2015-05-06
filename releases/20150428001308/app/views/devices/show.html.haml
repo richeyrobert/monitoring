@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @device.name
+%p
+  %b Description:
+  = @device.description
+%p
+  %b Ip address:
+  = @device.ip_address
+%p
+  %b Device status:
+  = @device.device_status
+%p
+  %b Ipv6:
+  = @device.ipv6
+%p
+  %b Snmp template:
+  = @device.snmp_template
+
+= link_to 'Edit', edit_device_path(@device)
+\|
+= link_to 'Back', devices_path
