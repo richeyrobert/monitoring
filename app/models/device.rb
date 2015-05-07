@@ -1,5 +1,5 @@
 class Device < ActiveRecord::Base
-
+	require 'rrd'
 	# This will be used to ping a device to see if it is available. 
 	def ping
 		result = `ping -c 1 #{ip_address}`
