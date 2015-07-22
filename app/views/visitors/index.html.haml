@@ -1,0 +1,12 @@
+.h3 Welcome
+
+- if current_user.admin?
+	.h4	Configuration Backups
+	= link_to "Manage Configuration Backups", admin_device_backups_path(1)
+	.h4 Device Management
+	.h4 Log Lookup
+
+- else
+	.h4 Nothing to see here.
+.p
+	= @testing.inspect

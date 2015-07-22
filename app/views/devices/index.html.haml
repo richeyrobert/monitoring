@@ -16,22 +16,22 @@
   %tbody
     - @devices.each do |device|
       %tr
-        %td= link_to device.name, device_path(device)
-        %td= link_to device.description, device_path(device)
-        %td= link_to device.ip_address, device_path(device)
-        %td= link_to device.device_status, device_path(device)
+        %td= link_to device.name, admin_device_path(device)
+        %td= link_to device.description, admin_device_path(device)
+        %td= link_to device.ip_address, admin_device_path(device)
+        %td= link_to device.device_status, admin_device_path(device)
         - if device.ipv6? 
           %td= link_to "True", device_path(device)
         - else 
           %td= ""
         - if device.snmp_template.blank? 
-          %td= link_to "None", device_path(device)
+          %td= link_to "None", admin_device_path(device)
         - else 
           %td= ""
-        %td= link_to 'Show', device
-        %td= link_to 'Edit', edit_device_path(device)
-        %td= link_to 'Destroy', device, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Show', admin_device_path(device)
+        %td= link_to 'Edit', edit_admin_device_path(device)
+        %td= link_to 'Destroy', admin_device_path(device), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Device', new_device_path
+= link_to 'New Device', new_admin_device_path

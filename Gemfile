@@ -52,3 +52,9 @@ gem 'net-ping'
 gem 'snmp'
 # For RRD Graphing
 gem 'RailsRRDTool'
+# For executing SSH sessions (Testing)
+gem 'net-ssh-session'
+# For MikroTik communication
+gem 'mtik'
+# For attaching config files
+gem 'carrierwave'
