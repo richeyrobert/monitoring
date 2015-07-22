@@ -1,2 +1,2 @@
-class Admin::BackupsController < AdminController
+class Admin::Device::BackupsController < DevicesController
 end

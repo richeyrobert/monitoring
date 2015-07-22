@@ -1,4 +1,5 @@
 class Admin::DevicesController < AdminController
+  load_and_authorize_resource :backups
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
   # GET /devices
