@@ -1,0 +1,7 @@
+admin -> backups -> index.html.haml
+%br
+%h4 
+  = "Existing backups for device: #{@device.name}"
+%br
+- @backups.each do |backup|
+  = link_to "#{backup.created_at}", admin_device_backup_configurations_path(@device, backup)

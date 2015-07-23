@@ -1,2 +1,4 @@
-class Admin::Device::Backups::ConfigurationsController < BackupsController
+class Admin::ConfigurationsController < AdminController
+  def index
+  end
 end

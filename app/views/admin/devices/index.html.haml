@@ -1,1 +1,6 @@
 admin -> devices -> index.html.haml
+
+- @devices.each do |device|
+  %br
+  = device.name
+  = device.ip_address
