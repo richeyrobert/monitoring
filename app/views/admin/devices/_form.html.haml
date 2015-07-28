@@ -1,0 +1,14 @@
+= simple_form_for @device, url: @device.new_record? ? admin_devices_path : admin_device_path(@device) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :ip_address
+    = f.input :device_status
+    = f.input :ipv6
+    = f.input :snmp_template
+    = f.association :devtype
+
+  .form-actions
+    = f.button :submit

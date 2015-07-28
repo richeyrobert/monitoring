@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @devtype.name
+%p
+  %b Manufacturer:
+  = @devtype.manufacturer
+%p
+  %b Model:
+  = @devtype.model
+%p
+  %b Notes:
+  = @devtype.notes
+%p
+  %b Active:
+  = @devtype.active
+%p
+  %b Archived at:
+  = @devtype.archived_at
+
+= link_to 'Edit', edit_devtype_path(@devtype)
+\|
+= link_to 'Back', devtypes_path

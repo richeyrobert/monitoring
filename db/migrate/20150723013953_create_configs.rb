@@ -1,8 +1,8 @@
-class CreateConfigurations < ActiveRecord::Migration
+class CreateConfigs < ActiveRecord::Migration
   def change
-    create_table :configurations do |t|
+    create_table :configs do |t|
       t.references :backup, index: true, foreign_key: true
-      t.string :configfile
+      t.string :config_file
 
       t.timestamps null: false
     end

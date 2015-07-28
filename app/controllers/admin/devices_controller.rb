@@ -12,11 +12,13 @@ class Admin::DevicesController < AdminController
   # GET /devices/1.json
   def show
     @device = Device.find(params[:id])
+    @backups = @device.backups.all
   end
 
   # GET /devices/new
   def new
     @device = Device.new
+    @device_types = DeviceType.all
   end
 
   # GET /devices/1/edit

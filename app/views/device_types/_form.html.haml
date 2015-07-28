@@ -1,0 +1,10 @@
+= simple_form_for(@device_type) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :model
+    = f.input :manufacturer
+
+  .form-actions
+    = f.button :submit

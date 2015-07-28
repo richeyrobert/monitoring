@@ -1,0 +1,14 @@
+admin -> configs -> index.html.haml
+
+%h4 
+  = "Device: #{@device.name}"
+  %br
+  = "Backup: #{@backup.created_at.in_time_zone("Mountain Time (US & Canada)")}"
+%p
+  - unless @configs.empty?
+    - @configs.each do |config|
+      = config.inspect
+  - else
+    There are no configs for this device.
+%p
+  = link_to "Create a New Config", new_admin_device_backup_config_path(@device, @backup)

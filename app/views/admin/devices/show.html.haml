@@ -1,3 +1,38 @@
 admin-> devices-> show.html.haml
-%br
-= @device.name
+
+
+%p#notice= notice
+
+%p
+  %b Name:
+  = @device.name
+%p
+  %b Description:
+  = @device.description
+%p
+  %b Ip address:
+  = @device.ip_address
+%p
+  %b Device status:
+  = @device.device_status
+%p
+  %b Ipv6:
+  = @device.ipv6
+%p
+  %b Snmp template:
+  = @device.snmp_template
+%p.page-header
+  %b Backups for this device:
+- if @backups.empty?
+  %p.text-danger
+    No backups found for this device!
+- else
+  - @backups.each do |backup|
+    %p.text-success
+      = link_to backup.created_at.in_time_zone("Mountain Time (US & Canada)"), admin_device_backup_configs_path(@device, backup) 
+      \|
+      = link_to backup.description, admin_device_backup_configs_path(@device, backup)
+
+= link_to 'Edit', edit_admin_device_path(@device)
+\|
+= link_to 'Back', admin_devices_path

@@ -1,0 +1,13 @@
+= simple_form_for(@devtype) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :manufacturer
+    = f.input :model
+    = f.input :notes
+    = f.input :active
+    = f.input :archived_at
+
+  .form-actions
+    = f.button :submit

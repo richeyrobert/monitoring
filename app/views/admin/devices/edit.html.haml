@@ -1,0 +1,9 @@
+admin -> devices -> edit
+
+%h1 Editing device
+
+= render 'form'
+
+= link_to 'Show', admin_device_path(@device)
+\|
+= link_to 'Back', admin_devices_path

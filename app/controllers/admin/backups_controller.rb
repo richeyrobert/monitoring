@@ -8,6 +8,9 @@ class Admin::BackupsController < AdminController
     
   end
 
+  def new
+  end
+
   private 
 
   def load_defaults

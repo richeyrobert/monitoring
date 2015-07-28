@@ -1,0 +1,31 @@
+%h1 Listing devtypes
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Manufacturer
+      %th Model
+      %th Notes
+      %th Active
+      %th Archived at
+      %th
+      %th
+      %th
+
+  %tbody
+    - @devtypes.each do |devtype|
+      %tr
+        %td= devtype.name
+        %td= devtype.manufacturer
+        %td= devtype.model
+        %td= devtype.notes
+        %td= devtype.active
+        %td= devtype.archived_at
+        %td= link_to 'Show', devtype
+        %td= link_to 'Edit', edit_devtype_path(devtype)
+        %td= link_to 'Destroy', devtype, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Devtype', new_devtype_path
