@@ -3,5 +3,6 @@ class Api::V1::TwilioController < ApplicationController
   # protect_from_forgery :except => [:director, :update_stream, :remove_stream, :create_stream, ]
 
   def text_test
+    params.inspect
   end
 end

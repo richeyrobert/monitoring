@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :api, :defaults => {:format => :xml} do
     namespace :v1 do
-      match 'text_test' => 'twilio#text_test', via: [:get]
+      match 'text_test' => 'twilio#text_test', via: [:post]
       # match 'received_fax' => 'director#received_fax', via: [:post]
       # match 'incoming_fax' => 'director#received_fax', via: [:post]
       # match 'add_clip' => 'director#add_clip', via: [:post]
