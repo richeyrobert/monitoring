@@ -29,9 +29,22 @@ class Api::V1::TwilioController < ApplicationController
   end
   def text_engine
     # This method will need to check the customer database of TQMS for the customer with a phone number that is the from number.
-    if params[:Body].include?("status")
+
+    # Used to determine if we recognized a key word from the body of the text message that we received. 
+    found_a_match = false
+    if params[:Body].downcase.include?("status")
+      found_a_match = true
       render "status"
     end
-
+    if params[:Body].downcase.include?("bill")
+      # Send back a current bill balance to the customer.
+    end
+    if params[:Body].downcase.include?("call me")
+      # We need to call the customer. They need some help.
+    end
+    # If we havent found any matches, then send back a generic message. 
+    if !found_a_match
+      render "no-match"
+    end
   end
 end
