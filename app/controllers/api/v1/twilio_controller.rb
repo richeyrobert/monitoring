@@ -29,7 +29,7 @@ class Api::V1::TwilioController < ApplicationController
   end
   def text_engine
     # This method will need to check the customer database of TQMS for the customer with a phone number that is the from number.
-    if params[:body].include?("status")
+    if params[:Body].include?("status")
       render "status"
     end
 
