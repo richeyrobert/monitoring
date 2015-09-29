@@ -58,3 +58,9 @@ gem 'net-ssh-session'
 gem 'mtik'
 # For attaching config files
 gem 'carrierwave'
+# For getting config files from ubnt devices
+gem 'net-scp'
+# For Cisco commands
+gem 'net-ssh-telnet'
+# For Twilio integration
+gem 'twilio-ruby'

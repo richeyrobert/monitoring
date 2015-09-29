@@ -9,20 +9,60 @@ class Backup < ActiveRecord::Base
     device_type = device.devtype.manufacturer
     case device_type
       when "cisco"
-        # Device specific backup instructions
+        get_cisco_config
       when "brocade"
         # Device specific backup instructions
       when "telco"
         # Device specific backup instructions
       when "ubnt"
-        # Device specific backup instructions
+        get_ubnt_config
       when "netonix"
-        # Device specific backup instructions
+        get_netonix_config
       when "Mikrotik"
         get_mikrotik_config
       else
         # Device specific backup instructions
     end
+  end
+
+  def get_cisco_config
+    # SCP must be enabled on the Cisco device before it will work correctly. Use the following command on the cisco device: 
+    # ip scp server enable
+    # First we need to create the file that we will be putting the SCP into
+    file = File.open("public/tmp/#{device.ip_address}.txt", "w")
+    session = Net::SSH.start(device.ip_address, device.config_user, password: device.config_pass) do |ssh|
+      ssh.scp.download!("running-config", file.path)
+    end
+    # now we have the config file that we need...
+    config1 = self.configs.new(config_file: file)
+    config1.save!
+    # now we can remove the backup files...
+    File.delete(file)
+  end
+
+  def get_brocade_config
+
+  end
+
+  def get_telco_config
+
+  end
+
+  def get_ubnt_config
+    # This will get the Ubiquiti config files from a Ubiquiti device.
+    # The easiest way to do this is to use SSH and SCP to get a copy of the current running config...
+    Net::SSH.start(device.ip_address,device.config_user,password: device.config_pass) do |ssh|
+      ssh.scp.download! "/tmp/system.cfg", "public/tmp/#{device.ip_address}.txt"
+    end
+    # Now we should have the device's config file on this server... Let's create some configfiles for this backup.
+    config1 = self.configs.new(config_file: File.open("public/tmp/#{device.ip_address}.txt"))
+    config1.save!
+    # Now we can remove the backup files 
+    File.delete("public/tmp/#{device.ip_address}.txt")
+  end
+
+  def get_netonix_config
+    # This will get the config files for a Netonix device. 
   end
 
   def get_mikrotik_config
@@ -69,10 +109,15 @@ class Backup < ActiveRecord::Base
 
     result = mt.get_reply('/file/remove', "=numbers=#{script_line}")
     result = mt.get_reply('/file/remove', "=numbers=#{backup_line}")
+    
+    # Now remove the local files from this server for good housekeeping...
+    File.delete("public/tmp/new-backup.backup")
+    File.delete("public/tmp/configscript.rsc")
 
   end
 
   def ssh_reference
+    # This method is for reference... It can be deleted later. 
     require 'net/ssh/session'
 
     # Initialize a new connection
