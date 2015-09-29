@@ -38,9 +38,11 @@ class Api::V1::TwilioController < ApplicationController
     end
     if params[:Body].downcase.include?("bill")
       # Send back a current bill balance to the customer.
+      render "bill"
     end
     if params[:Body].downcase.include?("call me")
       # We need to call the customer. They need some help.
+      render "callme"
     end
     # If we havent found any matches, then send back a generic message. 
     if !found_a_match
