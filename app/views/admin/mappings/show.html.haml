@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Received text:
+  = @mapping.received_text
+%p
+  %b Reply text:
+  = @mapping.reply_text
+
+= link_to 'Edit', edit_admin_mapping_path(@mapping)
+\|
+= link_to 'Back', admin_mappings_path

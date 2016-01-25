@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin, path: 'admin' do
     resources :devtypes
-    resources :device_types 
+    resources :device_types
+    resources :mappings
     resources :devices do 
       resources :backups do
         resources :configs

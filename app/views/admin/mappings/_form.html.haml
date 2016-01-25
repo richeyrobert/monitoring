@@ -1,0 +1,9 @@
+= simple_form_for([:admin, @mapping]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :received_text
+    = f.input :reply_text
+
+  .form-actions
+    = f.button :submit
