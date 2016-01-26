@@ -28,27 +28,21 @@ class Api::V1::TwilioController < ApplicationController
 
   end
   def text_engine
+    # For debugging.... Disable the following line
+    params.inspect
     # This method will need to check the customer database of TQMS for the customer with a phone number that is the from number.
-
-    # Used to determine if we recognized a key word from the body of the text message that we received. 
-    found_a_match = false
-    if params[:Body].downcase.include?("status")
-      found_a_match = true
-      render "status"
-    end
-    if params[:Body].downcase.include?("bill")
-      # Send back a current bill balance to the customer.
-      found_a_match = true
-      render "bill"
-    end
-    if params[:Body].downcase.include?("call me")
-      # We need to call the customer. They need some help.
-      found_a_match = true
-      render "callme"
-    end
-    # If we havent found any matches, then send back a generic message. 
-    if !found_a_match
-      render "no_match"
+    # TODO: change the following garbage to do a dynamic lookup from the database for the existence of text command mappings.
+    # mapping = Mapping.where('lower(name) = ?', params[:Body].downcase).first 
+    mapping = Mapping.find_by(received_text: params[:Body].downcase)
+    # Now we need to determine what to do based on the mapping type...
+    
+    unless mapping.blank?
+      # Lets send back the response for the mapping that we have...
+      @response_text = mapping.reply_text
+      render 'responder'
+    else
+      # Send back an error message... "We don't know what you are asking us"
+      render 'no_match'
     end
   end
 end
