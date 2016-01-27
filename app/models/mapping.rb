@@ -1,4 +1,5 @@
 class Mapping < ActiveRecord::Base
+  belongs_to :mapping_type
   before_save :downcase_all
 
   def downcase_all

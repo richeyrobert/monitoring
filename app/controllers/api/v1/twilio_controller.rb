@@ -34,9 +34,17 @@ class Api::V1::TwilioController < ApplicationController
     # TODO: change the following garbage to do a dynamic lookup from the database for the existence of text command mappings.
     # mapping = Mapping.where('lower(name) = ?', params[:Body].downcase).first 
     mapping = Mapping.find_by(received_text: params[:Body].downcase)
-    # Now we need to determine what to do based on the mapping type...
-    
     unless mapping.blank?
+      # Now we need to determine what to do based on the mapping type...
+
+      # Current mapping types:
+      # Robotext - Will automatically send a text response based on the message received.
+      # Functionator - Will execute a function based on the text received.
+
+      # Built-in functions:
+      # Send open/closed times based on a clock with an open/closed schedule.
+      # Send a location/address text based on given criteria.
+      # Call back - schedule a call for a CSR to make at a determined time.
       # Lets send back the response for the mapping that we have...
       @response_text = mapping.reply_text
       render 'responder'

@@ -8,12 +8,14 @@
       %th
       %th
       %th
+      %th
 
   %tbody
     - @mappings.each do |mapping|
       %tr
         %td= mapping.received_text
         %td= mapping.reply_text
+        %td= mapping.mapping_type.name
         %td= link_to 'Show', admin_mapping_path(mapping)
         %td= link_to 'Edit', edit_admin_mapping_path(mapping)
         %td= link_to 'Destroy', admin_mapping_path(mapping), :method => :delete, :data => { :confirm => 'Are you sure?' }
