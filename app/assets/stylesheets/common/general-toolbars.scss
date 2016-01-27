@@ -1,0 +1,45 @@
+// General layout for toolbars and filters
+
+#button-toolbar {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+#button-toolbar > .btn, #button-toolbar > form > span {
+  margin-right: 5px !important;
+}
+#button-toolbar button {
+  margin-right: 5px !important;
+}
+
+// Make all the buttons right
+.form-actions > .btn:first-child {
+  margin-right: 5px !important;
+}
+
+.toolbar {
+  margin-bottom: 1em !important;
+}
+
+.toolbar button {
+  margin-right: 5px !important;
+}
+
+.toolbar > .btn, .toolbar > form > span {
+  margin-right: 5px !important;
+}
+
+.filter {
+}
+
+// Orange navbar links
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #e7e7e7 !important;
+  color: #e26b08 !important;
+}
+
+// Orange navbar links in inverse mode
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  color: #FFA73D !important;
+  background-color: #424242 !important;
+  font-weight: bold;
+}

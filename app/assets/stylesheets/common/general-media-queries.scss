@@ -1,0 +1,92 @@
+// For general purpose Media Queries
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+@media (max-width: 767px) {
+  .fa-3x {
+    font-size: 1em !important;
+  }
+  div#filter_buttons.col-sm-3.col-xs-6.col-lg-6 {
+    padding-left: 0em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .fa-3x {
+    font-size: 2em !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  .navbar-nav {
+    float: none !important;
+  }
+  span.fa-title {
+  }
+  .navbar-right {
+    float: none !important;
+  }
+  button#filter_search.filter-margin-left {
+    margin-left: 1em !important;
+  }
+  div#filter_buttons.col-sm-3.col-xs-6.col-lg-6 {
+    padding-left: 0em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .fa-3x {
+    font-size: 3em !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  .navbar-nav {
+    float: none !important;
+  }
+  span.fa-title {
+  }
+  .navbar-right {
+    float: none !important;
+  }
+  button#filter_search.filter-margin-left {
+    margin-left: 1em !important;
+  }
+  div#filter_buttons.col-sm-3.col-xs-6.col-lg-6 {
+    padding-left: 0em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .fa-3x {
+    font-size: 3em !important;
+    display: block !important;
+    text-align: center !important;
+  }
+  .navbar-nav {
+    float: left !important;
+  }
+  span.fa-title {
+    display: inline-block !important;
+  }
+  .navbar-right {
+  }
+  button#filter_search.filter-margin-left {
+    margin-left: 0em !important;
+  }
+  div#filter_buttons.col-sm-3.col-xs-6.col-lg-6 {
+    padding-left: 0em !important;
+    margin-bottom: 1em !important;
+  }
+}
+
+
+// Tonaquint themed nav pills
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: white;
+  background-color: #FFA73D !important;
+}

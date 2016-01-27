@@ -1,0 +1,85 @@
+// General CSS Layout, common to all portals
+
+// Footer copyright
+footer p {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.page-header {
+  margin-bottom: 1em !important;
+}
+
+.well {
+  padding: 10px !important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0em !important;
+}
+
+// Make tabs clear everything else out of the way
+.nav-tabs {
+  clear: both;
+}
+
+// Give us some space!
+.tab-content > .active {
+  margin-top: 1em;
+}
+
+// Tonaquint themed nav pills
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: white;
+  background-color: #FFA73D !important;
+}
+
+// Archived pill links
+.nav-pills > li.active > a.text-danger, .nav-pills > li.active > a.text-danger:hover, .nav-pills > li.active > a.text-danger:focus {
+  background-color: #a94442 !important;
+}
+
+// Clean up the pagination
+.pagination {
+  float: left;
+  clear: both;
+}
+
+// Grotesquely large checkbox buttons fix
+input.form-control.boolean[type="checkbox"] {
+  height: 1.5em !important;
+  float: left !important;
+  width: 50px !important;
+}
+
+// Grotesquely large checkbox buttons fix
+input.form-control.check_boxes[type="checkbox"] {
+  height: 1.5em !important;
+  float: left !important;
+  width: 50px !important;
+  margin-right: 1em !important;
+}
+
+.dashboard-box {
+  text-align: center ;
+  margin-bottom: 1em;
+}
+
+form.form-inline.inline-search-form {
+  display: inline;
+}
+
+input#inline_search {
+  max-width: 20em;
+  display: inline;
+}
+
+// table-hover color
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+  background-color: #FFA73D !important;
+}
+
+// Move the remember me checkbox over
+input.remember-me {
+  margin-left: -13px !important;
+}

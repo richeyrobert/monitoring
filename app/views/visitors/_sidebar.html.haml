@@ -1,0 +1,38 @@
+%li.disabled
+  = link_to root_path, title: "current_customer.to_s" do
+    = fa_icon "male"
+    %span.hidden-xs.hidden-sm= "current_customer.full_name"
+
+%li{class: (active_tab == 'general') ? 'active' : nil}
+  = link_to root_path(anchor: 'general'), title: 'Dashboard', data: {toggle: 'tab'} do
+    = fa_icon "tachometer"
+    %span.hidden-xs.hidden-sm Dashboard
+
+- if true #can?(:index, Subscription)
+  %li{class: (active_tab == 'subscriptions') ? 'active' : nil}
+    = link_to root_path, title: 'Subscriptions' do
+      = fa_icon 'repeat'
+      %span.hidden-xs.hidden-sm Subscriptions
+
+- if true #can?(:index, Contract)
+  %li{class: (active_tab == 'contracts') ? 'active' : nil}
+    = link_to root_path, title: 'My Agreement' do
+      = fa_icon 'gavel'
+      %span.hidden-xs.hidden-sm My Agreement
+
+- if true #can?(:index, CreditCard)
+  %li{class: (active_tab == 'credit_cards') ? 'active' : nil}
+    = link_to root_path, title: 'Credit Cards' do
+      = fa_icon 'credit-card'
+      %span.hidden-xs.hidden-sm Credit Cards
+
+- if true #can?(:index, Document)
+  %li{class: (active_tab == 'documents') ? 'active' : nil}
+    = link_to root_path, title: 'Documents' do
+      = fa_icon "folder-o"
+      %span.hidden-xs.hidden-sm Documents
+
+%li{class: (active_tab == 'tickets') ? 'active' : nil}
+  = link_to root_path, title: 'Tickets' do
+    = fa_icon "fire-extinguisher"
+    %span.hidden-xs.hidden-sm Support

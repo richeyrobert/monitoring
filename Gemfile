@@ -9,16 +9,22 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'therubyracer'
+gem 'font-awesome-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'simple_form', '~>3.1.0'
+gem 'jquery-turbolinks'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+gem 'bootstrap-datepicker-rails', require: 'bootstrap-datepicker-rails', git: 'https://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'twitter-typeahead-rails', git: "git://github.com/yourabi/twitter-typeahead-rails.git"
+gem 'active_link_to'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'sqlite3'
 end
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
-gem 'simple_form'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

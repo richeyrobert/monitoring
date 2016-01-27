@@ -1,15 +1,76 @@
-!!!
-%html
+!!! 5
+%html(lang="en")
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Monitoring'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Monitoring'}"}
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? t('.title', title: yield(:title)) : t('.default_title')
     = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png'
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = render partial: 'layouts/google_analytics' if Rails.env.production?
+
   %body
-    %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
-      = render 'layouts/messages'
-      = yield
+    %nav.navbar.navbar-inverse{role: "navigation"}
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle{"data-target" => "#navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{href: root_path, title: 'MyTonaquint.com - Dashboard'}
+            - if user_signed_in?
+              = fa_icon "tachometer", class: 'fa-3x'
+              %span.hidden-sm.hidden-md.hidden-lg MyTonaquint.com
+            - else
+              = fa_icon "tachometer", class: 'fa-1x'
+              Tonaquint Monitoring
+
+        = render "layouts/navigation"
+
+    - if content_for?(:sidebar)
+      .container-fluid
+        .row-fluid
+          .col-xs-12.col-lg-2
+            .sidebar-nav
+              .hidden-sm.hidden-xs.hidden-md
+                %ul.nav.nav-pills.nav-stacked= yield(:sidebar)
+              .visible-xs.visible-sm.visible-md
+                %ul.nav.nav-pills= yield(:sidebar)
+          .col-xs-12.col-lg-10
+            %div.flash-message
+              = bootstrap_flash
+            - if content_for?(:sub_title)
+              .page-header
+                %h3.sub-title.inline
+                  - if content_for(:fa_icon)
+                    = fa_icon yield(:fa_icon), class: 'fa-1x'
+                  = content_for?(:sub_title) ? yield(:sub_title) : t('.default_sub_title')
+            - if content_for?(:toolbar)
+              %div#button-toolbar= yield(:toolbar)
+            %div= yield
+    - else
+      .container
+        .row
+          .col-xs-12.col-lg-12
+            %div.flash-message
+              = bootstrap_flash
+            - if content_for?(:sub_title)
+              .page-header
+                %h3.sub-title.inline
+                  - if content_for(:fa_icon)
+                    = fa_icon yield(:fa_icon), class: 'fa-1x'
+                  = content_for?(:sub_title) ? yield(:sub_title) : t('.default_sub_title')
+            - if content_for?(:toolbar)
+              %div#button-toolbar= yield(:toolbar)
+            = yield
+
+  %footer
+    %p &copy; MyTonaquint #{Date.today.year}

@@ -1,12 +1,40 @@
-.h3 Welcome
-
+/ / - title "Active Customers", true, {fa_icon: 'male'}
+- content_for(:sidebar) do
+  = render 'sidebar', active_tab: 'general'
+- content_for(:toolbar) do 
+  = render 'toolbar'
+- content_for(:subtitle) do
+  "I am the subtitle"
 - if current_user.admin?
-	.h4	Configuration Backups
-	= link_to "Manage Configuration Backups", admin_device_backups_path(1)
-	.h4 Device Management
-	.h4 Log Lookup
-
+  .tab-content
+    .tab-pane.active#general
+      .panel.panel-default
+        .panel-heading
+          %h4 Configuration Backups
+        .panel-body
+          = link_to "Manage Configuration Backups", admin_device_backups_path(1)
+  .tab-content
+    .tab-pane.active#general
+      .panel.panel-default
+        .panel-heading
+          %h4 Device Management
+        .panel-body
+  .tab-content
+    .tab-pane.active#general
+      .panel.panel-default
+        .panel-heading
+          %h4 Log Lookup
+        .panel-body
+  .tab-content
+    .tab-pane.active#general
+      .panel.panel-default
+        .panel-heading
+          %h4 Manage Text Responders
+        .panel-body
 - else
-	.h4 Nothing to see here.
-.p
-	= @testing.inspect
+  .tab-content
+    .tab-pane.active#general
+      .panel.panel-default
+        .panel-heading
+          %h4 Nothing to see here 
+        .panel-body
