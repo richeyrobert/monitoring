@@ -70,3 +70,5 @@ gem 'net-scp'
 gem 'net-ssh-telnet'
 # For Twilio integration
 gem 'twilio-ruby'
+# For API calls to TQMS
+gem 'httparty'

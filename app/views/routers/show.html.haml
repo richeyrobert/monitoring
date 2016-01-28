@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @router.name
+%p
+  %b Ip address:
+  = @router.ip_address
+%p
+  %b Model:
+  = @router.model
+%p
+  %b Connection info:
+  = @router.connection_info
+
+= link_to 'Edit', edit_router_path(@router)
+\|
+= link_to 'Back', routers_path

@@ -1,0 +1,27 @@
+%h1 Listing routers
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Ip address
+      %th Model
+      %th Connection info
+      %th
+      %th
+      %th
+
+  %tbody
+    - @routers.each do |router|
+      %tr
+        %td= router.name
+        %td= router.ip_address
+        %td= router.model
+        %td= router.connection_info
+        %td= link_to 'Show', router
+        %td= link_to 'Edit', edit_router_path(router)
+        %td= link_to 'Destroy', router, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Router', new_router_path

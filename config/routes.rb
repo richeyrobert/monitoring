@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :routers
   namespace :admin, path: 'admin' do
     resources :devtypes
     resources :device_types

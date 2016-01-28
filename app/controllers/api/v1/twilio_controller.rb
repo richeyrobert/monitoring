@@ -33,6 +33,39 @@ class Api::V1::TwilioController < ApplicationController
     # This method will need to check the customer database of TQMS for the customer with a phone number that is the from number.
     # TODO: change the following garbage to do a dynamic lookup from the database for the existence of text command mappings.
     # mapping = Mapping.where('lower(name) = ?', params[:Body].downcase).first 
+
+    # API Procedure:
+    # 1. We are going to receive a text
+    # 2. See where this phone number is coming from
+    # 3. Pull the customer information
+    # 4. Execute a text response based on the text received
+
+    # First we need to see if this is a customer we don't know about trying to link their account with us. 
+    if params[:Body].downcase.contains == "email"
+      email = params[:Body].downcase.split("email ").last
+      
+    end
+
+    from_number = params[:From]
+    t = Tqms.new
+    response = t.customer_query(from_number)
+    response.inspect
+    if response.empty?
+      # Then the query failed
+      # We probably don't know the phone number. 
+
+    else
+      # The response was ok. We should have a customer record as JSON
+      # Get the customer record
+      devices = response["devices"]
+
+    end
+
+
+
+
+
+
     mapping = Mapping.find_by(received_text: params[:Body].downcase)
     unless mapping.blank?
       # Now we need to determine what to do based on the mapping type...
