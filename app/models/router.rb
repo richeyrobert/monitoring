@@ -3,36 +3,28 @@ class Router < ActiveRecord::Base
   # This is the Global Encryption string
   before_save :encrypt_community_string
 
-  def encrypt_community(community)
-    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    cipher.encrypt
-    key = cipher.random_key
-    iv = cipher.random_iv
+  def encrypt(plain_data)
+      cipher = OpenSSL::Cipher::AES.new(256, :CBC)
+      cipher.encrypt
+      cipher.key = Rails.application.config.aes_master_key
+      cipher.iv = Rails.application.config.aes_master_iv
+      encrypted = cipher.update(plain_data) + cipher.final
+      encoded = Base64.encode64(encrypted).encode('utf-8')
+    end
 
-    encrypted = cipher.update(community) + cipher.final
-
-    return_hash = {encrypted: %Q[#{encrypted}].force_encoding('UTF-8'), key: %Q[#{key}].force_encoding('UTF-8'), iv: %Q[#{iv}].force_encoding('UTF-8')}
-  end
-
-  def decrypt_community(encrypted_community, key, iv)
-    decipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    decipher.decrypt
-    decipher.key = key
-    decipher.iv = iv
-
-    plain = decipher.update(encrypted_community) + decipher.final
-    
-  end
+    def decrypt
+      decipher = OpenSSL::Cipher::AES.new(256, :CBC)
+      decipher.decrypt
+      decipher.key = Rails.application.config.aes_master_key
+      decipher.iv = Rails.application.config.aes_master_iv
+      decoded = Base64.decode64 self.community.encode('ascii-8bit')
+      plain = decipher.update(decoded) + decipher.final
+    end
 
   def encrypt_community_string
     unless self.community.blank?
-      if self.key.blank? || self.iv.blank? 
-        # We need to add the encryption
-        encryption_hash = encrypt_community(self.community)
-        self.community = encryption_hash[:encrypted]
-        self.key = encryption_hash[:key]
-        self.iv = encryption_hash[:iv]
-      end
+      # We need to add the encryption
+      self.community = encrypt(self.community)
     else
       # raise error
       raise self.error
