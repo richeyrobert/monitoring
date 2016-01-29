@@ -11,7 +11,7 @@ class Router < ActiveRecord::Base
 
     encrypted = cipher.update(community) + cipher.final
 
-    return_hash = {encrypted: %Q[#{encrypted}], key: key, iv: iv}
+    return_hash = {encrypted: %Q[#{encrypted}].force_encoding('UTF-8'), key: %Q[#{key}].force_encoding('UTF-8'), iv: %Q[#{iv}].force_encoding('UTF-8')}
   end
 
   def decrypt_community(encrypted_community, key, iv)
@@ -21,7 +21,7 @@ class Router < ActiveRecord::Base
     decipher.iv = iv
 
     plain = decipher.update(encrypted_community) + decipher.final
-    plain.to_string
+    
   end
 
   def encrypt_community_string
