@@ -113,9 +113,10 @@ class Debugger
     # 
     # Lets call a subroutine to find the pppoe session. (returns an array of routers where this username is active.)
     #TODO: add the username to this routine.
-    pppoe_result = find_pppoe
+    pppoe_result = find_pppoe("TODO: add username here")
     # Now let's try to ping the radio.
-    ping_result = pinger
+    ping_result = pinger(device["ip_address"])
+    # Get the radio signal strength, quality, capacity, traffic
   end 
 
   def find_pppoe(username)
@@ -180,14 +181,41 @@ class Debugger
 
   def pinger(ip_address)
     # This method pings an IP address 5 times and returns the ping results. 
-    # include Net
-    # Ping::TCP.service_check = true
-    pd = Net::Ping::UDP.new(ip_address)
-    if pd.ping
-      puts "Ping successful"
-   else
-      puts "Ping unsuccessful: " +  pd.exception
-   end
+    pd = Net::Ping::External.new(ip_address)
+    ping_results = Array.new
+    i = 1
+    5.times do 
+      if pd.ping
+        this_result = Hash.new
+        this_result[:number] = i
+        this_result[:successful] = true
+        this_result[:duration] = pd.duration * 1000
+        ping_results << this_result
+      else
+        this_result = Hash.new
+        this_result[:number] = i
+        this_result[:successful] = false
+        this_result[:duration] = pd.duration * 1000
+        ping_results << this_result
+      end
+      i += 1
+    end
+    ping_results
+  end
+
+  def get_radio_qualcap
+    # Firmware 5.6.2
+      # Radio Signal Strength = SNMPv2-SMI::enterprises.41112.1.4.5.1.5.1 = INTEGER: -38
+      # Noise Floor = SNMPv2-SMI::enterprises.41112.1.4.7.1.4.1.36.164.60.184.182.245 = INTEGER: -91
+      # Airmax Quality = SNMPv2-SMI::enterprises.41112.1.4.6.1.3.1 = INTEGER: 96
+      # Airmax Capacity = SNMPv2-SMI::enterprises.41112.1.4.6.1.4.1 = INTEGER: 88
+    # Firmware 5.6.3
+      # Signal Strength = SNMPv2-SMI::enterprises.41112.1.4.5.1.5.1 = INTEGER: -61
+      # Noise Floor = SNMPv2-SMI::enterprises.41112.1.4.7.1.4.1.4.24.214.74.212.27 = INTEGER: -87
+      # Airmax Quality = SNMPv2-SMI::enterprises.41112.1.4.6.1.3.1 = INTEGER: 62
+      # Airmax Capacity = SNMPv2-SMI::enterprises.41112.1.4.6.1.4.1 = INTEGER: 47
+      # Transmit CCQ = SNMPv2-SMI::enterprises.41112.1.4.5.1.7.1 = INTEGER: 92
+
   end
 
 end
