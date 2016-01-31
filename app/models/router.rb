@@ -12,7 +12,7 @@ class Router < ActiveRecord::Base
       encoded = Base64.encode64(encrypted).encode('utf-8')
     end
 
-    def decrypt
+    def decrypt_community
       decipher = OpenSSL::Cipher::AES.new(256, :CBC)
       decipher.decrypt
       decipher.key = Rails.application.config.aes_master_key
